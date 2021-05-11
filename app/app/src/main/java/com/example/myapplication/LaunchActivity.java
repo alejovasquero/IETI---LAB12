@@ -19,6 +19,7 @@ public class LaunchActivity extends AppCompatActivity {
                 getSharedPreferences( getString( R.string.preference_file_key ), Context.MODE_PRIVATE );
         Intent intent;
         if(sharedPref.contains(TOKEN_KEY)){
+            System.out.println("DDDD");
             intent = new Intent(this, MainActivity.class);
         }else{
             intent = new Intent(this, LoginActivity.class);

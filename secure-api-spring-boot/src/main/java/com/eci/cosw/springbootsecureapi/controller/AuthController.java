@@ -36,6 +36,7 @@ public class AuthController
     public Token login( @RequestBody User login )
         throws ServletException
     {
+        System.out.println("HHH");
 
         String jwtToken;
 
@@ -63,6 +64,7 @@ public class AuthController
 
         jwtToken = Jwts.builder().setSubject( email ).claim( "role", user.getRole().toString() ).setIssuedAt(
             new Date() ).signWith( SignatureAlgorithm.HS256, "secretkey" ).compact();
+        System.out.println(jwtToken);
 
         return new Token( jwtToken );
     }
@@ -70,21 +72,21 @@ public class AuthController
     public class Token
     {
 
-        String access_token;
+        String accessToken;
 
         Token( String access_token )
         {
-            this.access_token = access_token;
+            this.accessToken = access_token;
         }
 
         public String getAccessToken()
         {
-            return access_token;
+            return accessToken;
         }
 
         public void setAccessToken( String access_token )
         {
-            this.access_token = access_token;
+            this.accessToken = access_token;
         }
     }
 

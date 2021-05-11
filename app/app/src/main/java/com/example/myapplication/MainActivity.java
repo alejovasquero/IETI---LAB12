@@ -1,6 +1,10 @@
 package com.example.myapplication;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
@@ -59,5 +63,17 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public boolean logOut(MenuItem item){
+        Intent intent = new Intent(this, LoginActivity.class);
+        SharedPreferences sharedPref =
+                getSharedPreferences( getString( R.string.preference_file_key ), Context.MODE_PRIVATE );
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove("TOKEN_KEY");
+        editor.apply();
+        startActivity(intent);
+        this.finish();
+        return true;
     }
 }
